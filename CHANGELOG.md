@@ -1,25 +1,29 @@
-## Unreleased
+# Changelog
 
-## 1.0.2
+All notable changes to this project will be documented in this file.
 
-- Allow use of Casting::Enum.enum
-- Remove unused local variable in enum.
-- Added CODE_OF_CONDUCT.md
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.0.1
+## [1.0.4] - Unreleased
 
-- Fix to properly include Enum files
-- 1.0.0 actually dropped 2.6 and below.
-- Fix changelog which had 0.7.3 notes that are actually 1.0 notes
+## [1.0.3] - 2025-10-17
 
-## 1.0.0
+### Added
 
-- Drop Ruby 2.5 and below
-- Add Casting::Enum to return enumerators which apply a set of behaviors
-- Remove Casting::PreparedDelegation class and move all features into Casting::Delegation
+- Reissue gem for release management. (fff3226)
+- Error message on no method error to include the method owner (96cee90)
 
-## 0.7.2 2016-07-28
+### Removed
 
-- Return defined __delegates__ or empty array, allowing frozen client objects.
-  Previous implementation raised an error when accessing uninitialized collection
-  of __delegates__
+- Testing for ruby below version 3.2 (ea4b09d)
+
+### Changed
+
+- Handle quote and owner prefix changes in ruby 3.4 error messages (7af7b4f)
+- Simplify role_for conversion of snake_case to CamelCase. (d60c0cc)
+- Cache regular expressions at the SuperDelegate class level. (e11479a)
+
+### Fixed
+
+- Incorrect assert using a block rather than assert_raises. (09c198a)

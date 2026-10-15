@@ -37,7 +37,7 @@ module Casting
       attr_reader(*setup_args)
       private(*setup_args)
 
-      define_method(:__custom_initialize, &(block || proc {}))
+      define_method(:__custom_initialize, &block || proc {})
 
       mod = Module.new
       mod.class_eval <<~INIT, __FILE__, __LINE__ + 1
@@ -98,7 +98,8 @@ module Casting
       # Get the behavior module for the named role.
       # This role constant for special_person is SpecialPerson.
       def role_for(name)
-        role_name = name.to_s.gsub(/(?:^|_)([a-z])/) { $1.upcase }
+        # Convert snake_case to CamelCase
+        role_name = name.to_s.split("_").map(&:capitalize).join
         self.class.const_get(role_name)
       rescue NameError
         Module.new
